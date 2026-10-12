@@ -1,16 +1,42 @@
-const ipk = 3.45;
+// import fungsi predikatkelulusan dari file predikat.js
+const { predikatKelulusan } = require("./predikat.js");
 
-if (ipk >= 3.5) {
-  console.log('Predikat Cumlaude');
-} else if (ipk >= 3.0) {
-  console.log('Predikat Sangat Memuaskan');
-} else if (ipk >= 1) {
-  console.log('Predikat tidak Memuaskan');
-}else {
-    console.log('predikat memuaskan');
-}
-
-// ternary operator
-const statusKelulusan = ipk >= 2.0 ? 'Lulus' : 'Tidak Lulus';
-
-console.log(statusKelulusan);
+// array object
+const mahasiswa = [
+  {
+    NIM: 2201001,
+    Nama: "Budi Santoso",
+    Prodi: "Sistem Informasi",
+    IPK: 3.45
+  },
+  {
+    NIM: 2201002,
+    Nama: "Siti Aminah",
+    Prodi: "Teknik Informatika",
+    IPK: 3.82
+  },
+  {
+    NIM: 2201003,
+    Nama: "Agus Wijaya",
+    Prodi: "Informatika",
+    IPK: 3.20
+  },
+  {
+    NIM: 2201004,
+    Nama: "Dewi Lestari",
+    Prodi: "Rekayasa Perangkat Lunak",
+    IPK: 3.61
+  },
+  {
+    NIM: 2201005,
+    Nama: "Rizky Pratama",
+    Prodi: "Sistem Informasi",
+    IPK: 2.95
+  }
+];
+ 
+mahasiswa.map( mahasiswa => {
+  // console.log(`Nama : ${mahasiswa.Nama} IPK : ${mahasiswa.IPK}`);
+  console.log(`Nama : ${mahasiswa.Nama} 
+      Status: ${predikatKelulusan(mahasiswa.IPK)}`);
+});
