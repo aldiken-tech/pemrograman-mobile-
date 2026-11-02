@@ -13,3 +13,5 @@ function KartuMahasiswa({
 }
 
 export default KartuMahasiswa;
+
+
