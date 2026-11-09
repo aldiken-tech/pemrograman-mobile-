@@ -1,68 +1,158 @@
-import { 
-  View, Text, StyleSheet, 
-  Button, Pressable, Image } from 'react-native';
 
-function KartuMahasiswa({ nama, jurusan, universitas, gambar = "images.jpg"}) {
-return (
-    <View style={styles.card}>
-      <Image source={require(`./assets/images.jpg`)} 
-        style={styles.gambar}
-      />
-      <Text style={styles.nama}>{nama}</Text>
-      <Text style={styles.informasi}>Jurusan : {jurusan} </Text>
-      <Text style={styles.informasi}>Universitas : {universitas}</Text>
-    </View>
-)
-}
+import React from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Button,
+  Pressable,
+  Image,
+  ScrollView,
+  FlatList,
+} from 'react-native';
 
-export default function App(){
-  function handlePress(){
-    return console.log("Tombol ditekan");
-  }
+const foods = [
+  {
+    id: '1',
+    name: 'Nasi Goreng',
+    price: 'Rp 15.000',
+    image: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400',
+  },
+  {
+    id: '2',
+    name: 'Burger',
+    price: 'Rp 25.000',
+    image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400',
+  },
+  {
+    id: '3',
+    name: 'Pizza',
+    price: 'Rp 35.000',
+    image: 'https://images.unsplash.com/photo- pizza?w=400',
+  },
+  {
+    id: '4',
+    name: 'French Fries',
+    price: 'Rp 12.000',
+    image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400',
+  },
+];
 
-  
+export default function App() {
   return (
-    <View style={styles.container}>
-      <KartuMahasiswa 
-        nama="Rizky Maulana" 
-        jurusan="Teknik Informatika"
-        universitas="Universitas Islam Indonesia"
-      />
-      <KartuMahasiswa
-        nama="Aldi Taher"
-        jurusan="Sistem Informasi"
-        universitas="IBBI"
-      />
+    <View style={styles.container}>  
+      {/* Header */}
+      <View style={styles.header}>
+        <Text style={styles.title}>Food Catalog</Text>
+        <Text style={styles.subtitle}>Temukan makanan favoritmu!</Text>
+      </View>
+
+      {/* Category */}
+      <View style={styles.category}>
+        <Text style={styles.sectionTitle}>Kategori Makanan</Text>
+
+        <View style={styles.categoryList}>
+          <Pressable style={styles.categoryItem}>
+            <Text>All</Text>
+          </Pressable>
+          <Pressable style={styles.categoryItem}>
+            <Text>Rice</Text>
+          </Pressable>
+          <Pressable style={styles.categoryItem}>
+            <Text>Burger</Text>
+          </Pressable>
+          <Pressable style={styles.categoryItem}>
+            <Text>Pizza</Text>
+          </Pressable>
+        </View>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20
+    flex: 1,
+    backgroundColor: '#F5F5F5',
   },
+
+  header: {
+    padding: 20,
+    backgroundColor: '#FF6B35',
+  },
+
+  title: {
+    fontSize: 26,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+
+  subtitle: {
+    color: 'white',
+    marginTop: 5,
+  },
+
+  category: {
+    padding: 15,
+  },
+
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 15,
+  },
+
+  categoryList: {
+    flexDirection: 'row',
+    gap: 10,
+  },
+
+  categoryItem: {
+    padding: 12,
+    backgroundColor: 'white',
+    borderRadius: 8,
+  },
+
+  foodSection: {
+    padding: 15,
+  },
+
   card: {
     backgroundColor: 'white',
-    padding: 20,
-    borderRadius: 10,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5
+    borderRadius: 12,
+    marginBottom: 15,
+    overflow: 'hidden',
   },
-  gambar: {
-    width: 80,
-    height: 80,
-    borderRadius: 100
+
+  foodImage: {
+    width: '100%',
+    height: 180,
   },
-  nama: {
-    fontSize: 20,
-    fontWeight: 'bold'
+
+  cardContent: {
+    padding: 15,
   },
-  informasi: {
+
+  foodName: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+
+  foodPrice: {
+    color: '#FF6B35',
     fontSize: 16,
-    color: 'gray'
+    marginVertical: 8,
+  },
+
+  buyButton: {
+    backgroundColor: '#FF6B35',
+    padding: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+
+  buttonText: {
+    color: 'white',
+    fontWeight: 'bold',
   },
 });
